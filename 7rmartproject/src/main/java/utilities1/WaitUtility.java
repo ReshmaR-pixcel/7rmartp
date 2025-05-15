@@ -10,11 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitUtility {
 	public static final int EXPLICIT_WAIT = 10;
-	public static final int IMPLICIT_WAIT=10;//test class
+	public static final int IMPLICIT_WAIT=10;
 	public void waitForElementToBeClickable(WebDriver driver,WebElement element)
 	{
 		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT));
-	    wait.until(ExpectedConditions.elementToBeClickable(element));//page class
+	    wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 	public void waitForElementIsSelectable(WebDriver driver,WebElement element) 
 	{
@@ -22,22 +22,22 @@ public class WaitUtility {
 	    wait.until(ExpectedConditions.elementSelectionStateToBe(element, false));
     }
 	public void waitForVisibilityOfTheElement(WebDriver driver,String xpath,long time)
-	
 	{
-		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(time));
+		WebDriverWait	wait = new WebDriverWait(driver,Duration.ofSeconds(time));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
 	}
 	
 	public void waitForInVisibilityOfTheElement(WebDriver driver,String xpath,long time)
 	{
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(time));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
+		 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
 	}
 	
 	public void waitForAlertToBePresent(WebDriver driver, long time) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
 	    wait.until(ExpectedConditions.alertIsPresent());
 	}
+
 }
 
 //selenium has to wait certain time before loading url then if the element isn't load throw exception- implicit-globally-test class

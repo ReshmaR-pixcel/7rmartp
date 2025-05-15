@@ -7,10 +7,14 @@ import org.testng.annotations.Test;
 
 import pages1.AdminUserPage;
 import pages1.LoginPage;
+import pages1.LogoutPage;
 import utilities1.ExcelUtility;
+import utilities1.FakerUtility;
 
 public class AdminUserTest extends Base {
-	@Test(retryAnalyzer = retry.Retry.class)
+	public LogoutPage logoutpage;
+	public AdminUserPage adminuserpage;
+	@Test(retryAnalyzer = retry.Retry.class,description="verify theat user is able to save user details")
 
 	
 	public void verifyThatUserIsAbleToSaveUserDeatils() throws IOException {
@@ -21,36 +25,35 @@ public class AdminUserTest extends Base {
 		String username = ExcelUtility.getStringData(1, 0, "Login_Page");
 		String password = ExcelUtility.getStringData(1, 1, "Login_Page");
 		
-		/*FakerUtility fakerutility=new FakerUtility();
+		FakerUtility fakerutility=new FakerUtility();
 		String adminusername=fakerutility.creatARandomFirstName();
-		String adminpassword=fakerutility.creatARandomFirstName();*/
+		String adminpassword=fakerutility.creatARandomFirstName();
 		
-		String adminusername=ExcelUtility.getStringData(0, 0,"adminuserpage");
-		String adminpassword=ExcelUtility.getStringData(0, 1,"adminuserpage");
+		/*String adminusername=ExcelUtility.getStringData(0, 0,"adminuserpage");
+		String adminpassword=ExcelUtility.getStringData(0, 1,"adminuserpage");*/
 
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUsername(username);
-		loginpage.enterPassword(password);
-		loginpage.clickOnSignInButton();
+		loginpage.enterUsername(username).enterPassword(adminpassword);
+		
+		LogoutPage logoutpage= loginpage.clickOnSignInButton();
 
 		
 
 		/**String newusername = "Ravin";
 		String newpassword= "Ravin";**/
 		
-		AdminUserPage adminuserpage = new AdminUserPage(driver);
+		//AdminUserPage adminuserpage = new AdminUserPage(driver);
 		
-		adminuserpage.clickOnAdminUserMoreInfo();
-		adminuserpage.clickOnAdminUserNewButton();
-		adminuserpage.enterNewUsername(adminusername);
-		adminuserpage.enterNewPassword(adminpassword);
-		adminuserpage.clickOnAdminSelectUsertype();
-		adminuserpage.clickOnAdminUserSaveButton();
+		
+		adminuserpage=logoutpage.adminUsersMoreInfo();
+		
+		adminuserpage.clickOnAdminUserNewButton().clickOnAdminUserNewButton().enterNewUsername(adminusername).enterNewPassword(adminpassword).clickOnAdminSelectUsertype().clickOnAdminUserSaveButton();
+		
 
 	
 
-		boolean issavebuttondisplayed = adminuserpage.isSaveButtonDisplayed();
-		Assert.assertTrue(issavebuttondisplayed);
+		boolean isalertdisplayed = adminuserpage.isAdminUserAlertDisplayed();
+		Assert.assertTrue(isalertdisplayed);
 
 	}
 

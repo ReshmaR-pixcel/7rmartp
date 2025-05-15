@@ -13,12 +13,8 @@
 			<methods>
 				<include
 					name="verifyUserIsAbleToLoginUsingInValidUsernameAndCorrectPassword"></include>
-				<include
-					name="verifyUserIsAbleToLoginUsingInValidUsernameAndInCorrectPassword"></include>
-				<include
-					name="verifyUserIsAbleToLoginUsingValidUsernameAndIncorrectPassword"></include>
-				<include
-					name="verifyUserIsAbleToLoginUsingValidUsernameAndPassword"></include>
+				
+				<include name="verifyUserIsAbleToLoginUsingValidUsernameAndPassword"></include>
 			</methods>
 			</class>
 		</classes>
@@ -37,10 +33,7 @@
 			<methods>
 				<include
 					name="verifyUserIsAbleToLoginUsingInValidUsernameAndCorrectPassword"></include>
-				<include
-					name="verifyUserIsAbleToLoginUsingInValidUsernameAndInCorrectPassword"></include>
-				<include
-					name="verifyUserIsAbleToLoginUsingValidUsernameAndIncorrectPassword"></include>
+				
 				<include
 					name="verifyUserIsAbleToLoginUsingValidUsernameAndPassword"></include>
 			</methods>
@@ -63,12 +56,8 @@
 			<methods>
 				<include
 					name="verifyUserIsAbleToLoginUsingInValidUsernameAndCorrectPassword"></include>
-				<include
-					name="verifyUserIsAbleToLoginUsingInValidUsernameAndInCorrectPassword"></include>
-				<include
-					name="verifyUserIsAbleToLoginUsingValidUsernameAndIncorrectPassword"></include>
-				<include
-					name="verifyUserIsAbleToLoginUsingValidUsernameAndPassword"></include>
+				
+				<include name="verifyUserIsAbleToLoginUsingValidUsernameAndPassword"></include>
 			</methods>
 			</class>
 		</classes>

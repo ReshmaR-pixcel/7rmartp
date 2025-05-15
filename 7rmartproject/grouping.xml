@@ -11,12 +11,12 @@
 		
 		<classes>
 			<class name="testscript1.LoginTest1">
+			
 				<methods>
 					<include
 						name="verifyUserIsAbleToLoginUsingValidUsernameAndPassword"></include>
 
 				</methods>
-
 			</class>
 		</classes>
 	</test>

@@ -1,18 +1,19 @@
 package pages1;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import utilities1.PageUtility;
 
 public class ManageContactPage {
 	WebDriver driver;
 
 	
 	
-	@FindBy(xpath = "//p[text()='Manage Contact']")
-	 WebElement managecontactbutton; 
+	/*@FindBy(xpath = "//p[text()='Manage Contact']")
+	 WebElement managecontactbutton; */
 	
 	@FindBy(xpath = "//i[@class='fas fa-edit']")
 	WebElement edit; 
@@ -24,26 +25,24 @@ public class ManageContactPage {
 	 WebElement enteremail;
 	
 	
-	@FindBy(xpath = "//textarea[@name='address']")
+	@FindBy(xpath = "(//textarea[@id='content'])[1]")
 	 WebElement enteraddress;
 	
 	
-	@FindBy(xpath = "//textarea[@name='del_time']")
+	@FindBy(xpath = "(//textarea[@id='content'])[2]")
 	 WebElement deliverytime; 
 	
 	@FindBy(xpath = "//input[@id='del_limit']")
-	 WebElement enterlimit;
+	 WebElement enterdeliverychargelimit;
 	
-	 
+	@FindBy(xpath = "//button[@name='Update']")
+	private WebElement updatebutton;  
+	
 	//i[@class='icon fas fa-check']      
 	//button[@type='button']
 	
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
 	private WebElement greenalert; 
-	
-	@FindBy(xpath = "//button[@name='Update']")
-	private WebElement updatebutton; 
-	
 	
 	public ManageContactPage (WebDriver driver) {
 
@@ -51,42 +50,51 @@ public class ManageContactPage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void clickOnManageContact() {
+	/*public void clickOnManageContact() {
 		//managecontactbutton.click();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();",managecontactbutton );
-	}
+	}*/
 	
-	public void clickOnActionButton() {
-		//edit.click();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();",edit );
+	public ManageContactPage clickOnActionButton() {
+		edit.click();
+		return this;
+		
 	}
-	public void enterPhonenumber(String number) {
+	public ManageContactPage enterPhonenumber(String number) {
+		enterphone.clear();
 		enterphone.sendKeys(number);
+		return this;
 	}
-	public void enterEmail(String email) {
+	public ManageContactPage enterEmail(String email) {
+		enteremail.clear();
 		enteremail.sendKeys(email);
+		return this;
 	}
-	public void enterAddress(String address) {
+	public ManageContactPage enterAddress(String address) {
+		enteraddress.clear();
 		enteraddress.sendKeys(address);
+		return this;
 	}
-	public void enterDeliveryTime(String Time) {
+	public ManageContactPage enterDeliveryTime(String Time) {
+		deliverytime.clear();
 		deliverytime.sendKeys(Time);
+		return this;
 	}
-	public void enterDeliveryChargeLimit(String limit) {
-		enterlimit.sendKeys(limit);
+	public ManageContactPage enterDeliveryChargeLimit(String limit) {
+		enterdeliverychargelimit.clear();
+		enterdeliverychargelimit.sendKeys(limit);
+		return this;
 	}
-	public void clickOnUpdate() {
+	public ManageContactPage clickOnUpdate() {
 		//updatebutton.click();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();",updatebutton );
+		PageUtility pageutility= new PageUtility();
+		pageutility.javaClickMethod(updatebutton, driver);
+		return this;
 	}
 	
 	public boolean isAlertDisplayed() {
 		return greenalert.isDisplayed();
 	}
-	public boolean isUpdateButtonDisplayed() {
-		return updatebutton.isDisplayed();
-	}
+	
 }

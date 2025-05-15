@@ -4,13 +4,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import pages1.LoginPage;
+import pages1.LogoutPage;
 import pages1.ManageCategoryPage;
 import utilities1.ExcelUtility;
 import utilities1.FakerUtility;
 
 public class ManageCategoryTest extends Base {
+	public LogoutPage logout;
+	public ManageCategoryPage managecategory;
 	
-@Test(retryAnalyzer = retry.Retry.class)
+@Test(retryAnalyzer = retry.Retry.class,description="verify user is able to add category")
+
 	public void verifyUserIsAbleToAddCategorySuccessfully() throws Exception  {
 
 	
@@ -21,24 +25,19 @@ public class ManageCategoryTest extends Base {
 		String category1 = fakerutility.creatARandomFirstName();
 		
         LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUsername( username);
-		loginpage.enterPassword(password);
-		loginpage.clickOnSignInButton();
+		loginpage.enterUsername( username).enterPassword(password);
+		
+		logout=loginpage.clickOnSignInButton();
 		
 		
-		ManageCategoryPage maincatagory =new ManageCategoryPage(driver);
+		//ManageCategoryPage maincatagory =new ManageCategoryPage(driver);
 		
-		maincatagory.clickOnNew();
-		maincatagory.enterCategories(category1);
-		maincatagory.clickDiscount();
-		maincatagory.clickOnImageUpload();
-		maincatagory.clickOnSaveButton();
+		managecategory=logout.clickMoreInfo();
+		managecategory.clickOnNew().enterCategories(category1).clickDiscount().clickOnImageUpload().clickOnSaveButton();
 		
 		
-		
-		
-		boolean newcategory = maincatagory.isNewCategoryDisplayed();
-		Assert.assertTrue(newcategory);
+		boolean isgreenalertdisplayed= managecategory.isAlertDisplayed();
+		Assert.assertTrue(isgreenalertdisplayed);
 		
 
 }

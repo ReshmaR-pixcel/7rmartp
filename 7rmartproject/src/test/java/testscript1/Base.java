@@ -70,6 +70,5 @@ public class Base {
 		driver.quit();
 		}	
 }
-}
-	
 
+}

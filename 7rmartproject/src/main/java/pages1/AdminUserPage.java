@@ -5,13 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities1.PageUtility;
+import org.openqa.selenium.support.ui.Select;
+
 
 public class AdminUserPage {
 	WebDriver driver;
 
-	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-admin']")
-	WebElement adminusermoreinfo;
+	//@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-admin']")
+	//WebElement adminusermoreinfo;
 	@FindBy(xpath = "//a[@onclick='click_button(1)']")
 	WebElement adminusernew;
 	@FindBy(xpath = "//input[@id='username']")
@@ -31,51 +32,55 @@ public class AdminUserPage {
 
 	}
 
-	public void clickOnAdminUserMoreInfo() {
+	/*public AdminUserPage clickOnAdminUserMoreInfo() {
 		// adminusermoreinfo.click();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", adminusermoreinfo);
-	}
+		return this;
+	}*/
 
-	public void clickOnAdminUserNewButton() {
+	public AdminUserPage clickOnAdminUserNewButton() {
 		// adminusernew.click();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", adminusernew);
+		return this;
 	}
 
-	public void enterNewUsername(String newusername) {
+	public AdminUserPage enterNewUsername(String newusername) {
 		adminuserusername.sendKeys(newusername);
-
+		return this;
 	}
 
-	public void enterNewPassword(String newpassword) {
+	public AdminUserPage enterNewPassword(String newpassword) {
 		adminpassword.sendKeys(newpassword);
+		return this;
+		
 	}
 
-	public void clickOnAdminSelectUsertype() {
-		/**
-		 * Select select=new Select(usertype); select.selectByValue("staff");
-		 **/
+	public AdminUserPage clickOnAdminSelectUsertype() {
+		
+		Select select = new Select(usertype);
+		select.selectByValue("staff");
 
-		PageUtility pageutility = new PageUtility();
-		pageutility.selectByIndex(usertype, 1);
 
+		//PageUtility pageutility = new PageUtility();
+		//pageutility.selectByIndex(usertype, 1);
+		return this;
 	}
 
-	public void clickOnAdminUserSaveButton() {
+	public AdminUserPage clickOnAdminUserSaveButton() {
 
-		// adminusernewsave.click();
+		
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click();", adminusernewsave);
+		return this;
 	}
 
 	public boolean isAdminUserAlertDisplayed() {
 		return adminuseralert.isDisplayed();
 	}
 
-	public boolean isSaveButtonDisplayed() {
-		return adminusernewsave.isDisplayed();
-	}
+
 
 }

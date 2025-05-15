@@ -3,8 +3,8 @@ package utilities1;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -22,9 +22,9 @@ public class ExcelUtility {
 		f = new FileInputStream(filepath);
 		wb = new XSSFWorkbook(f);
 		sh = wb.getSheet(sheet);
-		Row r = sh.getRow(i);
-		Cell c = r.getCell(j);
-		return c.getStringCellValue();
+		XSSFRow row = sh.getRow(i);
+		XSSFCell cell = row.getCell(j);
+		return cell.getStringCellValue();
 
 	}
 	public static String getIntegerData(int i, int j, String sheet) throws IOException {
@@ -33,9 +33,9 @@ public class ExcelUtility {
 			f = new FileInputStream(filepath);
 			wb = new XSSFWorkbook(f); 
 			sh = wb.getSheet(sheet);
-			Row r = sh.getRow(i);
-			Cell c = r.getCell(j);
-			int x = (int) c.getNumericCellValue();
+			XSSFRow row = sh.getRow(i);
+			XSSFCell cell = row.getCell(j);
+			int x = (int) cell.getNumericCellValue();
 			return String.valueOf(x);
 	
 }

@@ -4,67 +4,65 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import pages1.LoginPage;
-import pages1.SubcategoryPage1;
+import pages1.LogoutPage;
+import pages1.SubcategoryPage;
 import utilities1.ExcelUtility;
 import utilities1.FakerUtility;
 
 public class SubcategoryTest extends Base {
-	@Test(retryAnalyzer = retry.Retry.class)
+	public LogoutPage logoutpage;
+	public SubcategoryPage subcategorypage;
+	
+	@Test( retryAnalyzer = retry.Retry.class, description="verify if user is able to add subcategory details")
 	public void verifyUserCanAddCategorySuccessfully() throws Exception {
 		
 		
 		String username = ExcelUtility.getStringData(1, 0, "Login_Page");
 		String password = ExcelUtility.getStringData(1, 1, "Login_Page");
 		
-		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUsername(username);
-		loginpage.enterPassword(password);
-		loginpage.clickOnSignInButton();
-	
 		//String name1="plant";
 		FakerUtility fakerutility = new FakerUtility();
 		String category1  = fakerutility.creatARandomFirstName();
 		
-		SubcategoryPage1 subcategoryp=new SubcategoryPage1(driver);
-		subcategoryp.clickOnSubCategory();
-		subcategoryp.clickOnNewButton();
-		subcategoryp.enterCategoryName();
-		subcategoryp.enterSubCategoryName(category1);
-		subcategoryp.clickOnImageUpload();
-		subcategoryp.clickOnSaveButton();
-		boolean isgreenalertdisplayed=subcategoryp.isGreenAlertDisplayed();
+		LoginPage loginpage = new LoginPage(driver);
+		
+		loginpage.enterUsername(username).enterPassword(password);
+		
+		logoutpage=loginpage.clickOnSignInButton();
+		subcategorypage=logoutpage.subCategoryMoreInfo();
+		subcategorypage.clickOnNewButton().enterCategoryName().enterSubCategoryName(category1).clickOnImageUpload().clickOnSaveButton();
+		//SubcategoryPage subcategoryp=new SubcategoryPage(driver);
+		
+		boolean isgreenalertdisplayed=subcategorypage.isGreenAlertDisplayed();
 		Assert.assertTrue(isgreenalertdisplayed);
 		
 		
 		
 	}
-@Test(retryAnalyzer = retry.Retry.class)
+@Test(retryAnalyzer = retry.Retry.class,description="verify if user is able to update subcategory details")
 public void verifyUserCanUpdateSubCategorySuccessfully() throws Exception {
 		
 		
 		String username = ExcelUtility.getStringData(1, 0, "Login_Page");
 		String password = ExcelUtility.getStringData(1, 1, "Login_Page");
 
-		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUsername(username);
-		loginpage.enterPassword(password);
-		loginpage.clickOnSignInButton();
-	
-		//String name1="vegetables";
 		
 		FakerUtility fakerutility = new FakerUtility();
-		String category1  = fakerutility.creatARandomFirstName();
-		//String name1=fakerutility.creatARandomFirstName();
+		String editcategory = fakerutility.creatARandomFirstName();
 		
-		SubcategoryPage1 subcategoryp=new SubcategoryPage1(driver);
-		subcategoryp.clickOnSubCategory();
-		subcategoryp.clickOnAction();
-		subcategoryp.enterCategoryName();
-		subcategoryp.enterSubCategoryName(category1);
-		subcategoryp.clickOnImageUpload();
-		subcategoryp.clickOnUpdateCategory();
-		boolean isupdatebuttondisplayed=subcategoryp.isUpdateButtonDisplayed();
-		Assert.assertTrue(isupdatebuttondisplayed);
+		
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUsername(username).enterPassword(password);
+				
+				logoutpage=loginpage.clickOnSignInButton();
+				subcategorypage=logoutpage.subCategoryMoreInfo();
+				subcategorypage.clickOnAction().clickOnUpdateCategory().updateSubCategory(editcategory).updateImage().updateSave();
+		
+		//SubcategoryPage subcategoryp=new SubcategoryPage(driver);
+		
+	
+		boolean isgreenalertdisplayed=subcategorypage.isUpdateAlertDisplyed();
+		Assert.assertTrue(isgreenalertdisplayed);
 	
 		
 	}

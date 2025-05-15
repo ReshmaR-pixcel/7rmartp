@@ -4,12 +4,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import pages1.LoginPage;
+import pages1.LogoutPage;
 import pages1.ManageNewsPage;
 import utilities1.ExcelUtility;
 
 public class ManagenewsTest extends Base {
-
-	@Test(retryAnalyzer = retry.Retry.class)
+	public LogoutPage logoutpage;
+	public ManageNewsPage managenews;
+	
+	@Test(retryAnalyzer = retry.Retry.class,description="verify that user is able to create news")
 	
 	public void verifyUserIsAbleToCreateManageNews() throws Exception {
 		
@@ -20,24 +23,21 @@ public class ManagenewsTest extends Base {
 	//String newsvalue = "test automation";
 		String text=ExcelUtility.getStringData(1, 0,"managenewspage");
 	
-	LoginPage loginpage1=new LoginPage(driver);
+	LoginPage loginpage=new LoginPage(driver);
 	
-	loginpage1.enterUsername(username);
-	loginpage1.enterPassword(password);
-	loginpage1.clickOnSignInButton();
+	loginpage.enterUsername(username).enterPassword(password);
 	
-	
+	logoutpage=loginpage.clickOnSignInButton();
 	
 	
-	ManageNewsPage managenewspage1 = new ManageNewsPage(driver);
 	
-	managenewspage1.clickOnManageNewsInfo();
-	managenewspage1.clickOnManageNewsNewButton();
 	
-	managenewspage1.enterTheNews(text);
-	managenewspage1.clickOnManageNewsSaveButton();
+	//ManageNewsPage managenewspage = new ManageNewsPage(driver);
+	managenews=logoutpage.manageNewsMoreInfo();
+	managenews.clickOnManageNewsNewButton().enterTheNews(text).clickOnManageNewsSaveButton();
 	
-	boolean isalertdisplayed = managenewspage1.isGreenAlertDisplayed();
+	
+	boolean isalertdisplayed = managenews.isGreenAlertDisplayed();
 	Assert.assertTrue(isalertdisplayed);
 }
 

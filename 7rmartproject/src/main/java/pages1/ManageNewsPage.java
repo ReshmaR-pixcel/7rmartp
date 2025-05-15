@@ -10,14 +10,14 @@ public class ManageNewsPage {
 
 	
 
-	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news']")
-	 WebElement managenewsmoreinfo;
+	
 	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")
 	WebElement managenewsnewbutton;
-	@FindBy(xpath = "//button[@type='submit']")
-	 WebElement managenewssavebutton;
 	@FindBy(xpath = "//textarea[@id='news']")
 	 WebElement newsname;
+	@FindBy(xpath = "//button[@type='submit']")
+	 WebElement managenewssavebutton;
+	
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
 	WebElement greenalert;
 	
@@ -26,20 +26,21 @@ public class ManageNewsPage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	public void clickOnManageNewsInfo() {
-		managenewsmoreinfo.click();
-	}
+	
 
-	public void clickOnManageNewsNewButton() {
+	public ManageNewsPage  clickOnManageNewsNewButton() {
 		managenewsnewbutton.click();
+		return this;
 	}
 
-	public void enterTheNews(String newsvalue) {
+	public ManageNewsPage  enterTheNews(String newsvalue) {
 		newsname.sendKeys(newsvalue);
+		return this;
 	}
 
-	public void clickOnManageNewsSaveButton() {
+	public ManageNewsPage  clickOnManageNewsSaveButton() {
 		managenewssavebutton.click();
+		return this;
 	}
 
 	public boolean isGreenAlertDisplayed() {

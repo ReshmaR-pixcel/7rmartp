@@ -14,22 +14,24 @@ import org.openqa.selenium.support.ui.Wait;
 
 import constants1.Constants;
 import utilities1.FileUploadUtility;
+import utilities1.PageUtility;
 
 public class ManageCategoryPage {
 	
-	public 	WebDriver driver;
+	 	WebDriver driver;
 
 	
 	//a[@href='https://groceryapp.uniqassosiates.com/admin/list-category']
 	
-	@FindBy(xpath="//p[text()='Manage Category']") WebElement managecategorypag;
+	//@FindBy(xpath="//p[text()='Manage Category']") WebElement managecategorypage;
 	@FindBy(xpath="//a[@class='btn btn-rounded btn-danger']") WebElement newbutton;
 	@FindBy(xpath="//input[@id='category']") WebElement categories;
 	@FindBy(xpath="//li[@id='134-selectable']")WebElement discount;
 	@FindBy(xpath="//input[@id='main_img']") WebElement imageuploadbutton;
 	
-	
 	@FindBy(xpath="//button[@name='create']") WebElement savebutton;
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	WebElement alert;
 	
 public ManageCategoryPage(WebDriver driver) {
 		
@@ -39,42 +41,41 @@ public ManageCategoryPage(WebDriver driver) {
 	}
 	
 	
-	public void clickOnManageCategory() {
+	/*public void clickOnManageCategory() {
 		managecategorypag.click();
-	}
-	public void clickOnNew() {
-		//newbutton.click();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();",newbutton );
-	}
-	public void enterCategories(String cname) {
-		categories.sendKeys(cname);
+	}*/
+
+	public ManageCategoryPage clickOnNew() {
 	
+		newbutton.click();
+		
+		return this;
 	}
-	public void clickDiscount()
+	public ManageCategoryPage enterCategories(String cname) {
+		categories.sendKeys(cname);
+		return this;
+	}
+	public ManageCategoryPage  clickDiscount()
 	{
-		Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
-				.withTimeout(Duration.ofSeconds(30))
-				.pollingEvery(Duration.ofSeconds(5))
-				.ignoring(NoSuchElementException.class);
-				fluentWait.until(ExpectedConditions.elementToBeClickable(discount));
+		
 		discount.click();
-		//return this;
+		return this;
 	}
-	public void clickOnImageUpload() {
-		//imageuploadbutton.sendKeys("C:\\Users\\91828\\Downloads\tiger.jpg");
+	public ManageCategoryPage  clickOnImageUpload() {
+		
 		FileUploadUtility fileuploadutility = new FileUploadUtility();
 		fileuploadutility.fileUploadUsingSendKeys(imageuploadbutton, Constants.TIGER);//webelement name,
+		return this;
 		}
 	
-	public void clickOnSaveButton() {
+	public ManageCategoryPage  clickOnSaveButton() {
 		//savebutton.click();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();",savebutton );
-	
+		PageUtility pageutility = new PageUtility();
+		pageutility.javaClickMethod(savebutton, driver);
+		return this;
 	}
-	public boolean isNewCategoryDisplayed() {
-		return savebutton.isDisplayed();
+	public boolean isAlertDisplayed() {
+		return alert.isDisplayed();
 	}
 	
 }

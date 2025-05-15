@@ -4,12 +4,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import pages1.LoginPage;
-import pages1.ManageFooterTextPage1;
+import pages1.LogoutPage;
+import pages1.ManageFooterTextPage;
 import utilities1.ExcelUtility;
 
 public class ManageFooterTextTest extends Base {
-
-	@Test(retryAnalyzer = retry.Retry.class)
+	public LogoutPage logoutpage;
+	public ManageFooterTextPage managefootertext;
+	
+	@Test(retryAnalyzer = retry.Retry.class,description="verify if user is able to update footer details")
 
 	public void verifyUserCanUpdateFooterTextDetails() throws Exception {
 
@@ -17,49 +20,43 @@ public class ManageFooterTextTest extends Base {
 		String username = ExcelUtility.getStringData(1, 0, "Login_Page");
 		String password = ExcelUtility.getStringData(1, 1, "Login_Page");
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUsername(username);
-		loginpage.enterPassword(password);
-		loginpage.clickOnSignInButton();
-
+		loginpage.enterUsername(username).enterPassword(password);
 	
+		logoutpage=loginpage.clickOnSignInButton();
 
-		
 		String address=ExcelUtility.getStringData(1, 0,"managefooter");
 		String email=ExcelUtility.getStringData(1, 1,"managefooter");
-		String phone=ExcelUtility.getStringData(1, 2, "managefooter");
+		String phone=ExcelUtility.getIntegerData(1, 2, "managefooter");
 		
-		ManageFooterTextPage1 footertextpage = new ManageFooterTextPage1(driver);
+		//ManageFooterTextPage footertextpage = new ManageFooterTextPage(driver);
 
-		footertextpage.clickOnManageFooterText();
-		footertextpage.clickOnActionButton();
-		footertextpage.enterAddress(address);
-		footertextpage.enterEmail(email);
-		footertextpage.enterPhone(phone);
-		footertextpage.clickOnUpdate();
+		managefootertext=logoutpage.managefooterMoreInfo();
+		managefootertext.clickOnActionButton().enterAddress(address).enterEmail(email).enterPhone(phone).clickOnUpdate();
 		
-		boolean isgreenalertdisplayed = footertextpage.isGreenAlertDisplayed();
-		Assert.assertTrue(isgreenalertdisplayed);
+		
+		boolean isalertdisplayed = managefootertext.isGreenAlertDisplayed();
+		Assert.assertTrue(isalertdisplayed);
 
 	}
 
-	@Test(retryAnalyzer = retry.Retry.class)
+	@Test(retryAnalyzer = retry.Retry.class,description="verify if update button is displayed")
 	public void verifyUpdateButtonIsDisplayed() throws Exception {
 
 		String username = ExcelUtility.getStringData(1, 0, "Login_Page");
 		String password = ExcelUtility.getStringData(1, 1, "Login_Page");
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUsername(username);
-		loginpage.enterPassword(password);
-		loginpage.clickOnSignInButton();
-
+		loginpage.enterUsername(username).enterPassword(password);
 		
-		ManageFooterTextPage1 footertextpage = new ManageFooterTextPage1(driver);
+		logoutpage=loginpage.clickOnSignInButton();
 
-		footertextpage.clickOnManageFooterText();
-		footertextpage.clickOnActionButton();
-		footertextpage.clickOnUpdate();
+		managefootertext=logoutpage.managefooterMoreInfo();
 		
-		boolean isupdatebuttondisplayed = footertextpage.isupdateButtonDisplayed();
+		//ManageFooterTextPage footertextpage = new ManageFooterTextPage(driver);
+
+		managefootertext.clickOnActionButton().clickOnUpdate();
+		
+		
+		boolean isupdatebuttondisplayed = managefootertext.isupdateButtonDisplayed();
 		Assert.assertTrue(isupdatebuttondisplayed);
 	}
 }
