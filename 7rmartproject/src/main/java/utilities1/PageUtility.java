@@ -36,9 +36,8 @@ public class PageUtility {
 
 		public void javascriptScrollBottom(WebDriver driver) {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			// js.executeScript("window.scrollBy(0,4000)","");
 			js.executeScript("window.scrollBy(0,document.body.scrollHeight)", "");
-			// js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+			
 
 		}
 

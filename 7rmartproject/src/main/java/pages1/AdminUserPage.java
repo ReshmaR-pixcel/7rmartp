@@ -32,12 +32,6 @@ public class AdminUserPage {
 
 	}
 
-	/*public AdminUserPage clickOnAdminUserMoreInfo() {
-		// adminusermoreinfo.click();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", adminusermoreinfo);
-		return this;
-	}*/
 
 	public AdminUserPage clickOnAdminUserNewButton() {
 		// adminusernew.click();
@@ -63,8 +57,6 @@ public class AdminUserPage {
 		select.selectByValue("staff");
 
 
-		//PageUtility pageutility = new PageUtility();
-		//pageutility.selectByIndex(usertype, 1);
 		return this;
 	}
 

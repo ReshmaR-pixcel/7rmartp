@@ -18,7 +18,7 @@ public class SubcategoryPage {
 	WebDriver driver;
 
 	// p[text()='Sub Category']
-	
+
 	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/Subcategory/add']")
 	WebElement newbutton;
 	@FindBy(xpath = "//select[@class='form-control selectpicker']")
@@ -33,8 +33,6 @@ public class SubcategoryPage {
 
 	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
 	WebElement greenalert;
-
-	
 
 	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/Subcategory/edit?edit=3723&page_ad=1']")
 	WebElement editaction;
@@ -55,14 +53,13 @@ public class SubcategoryPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	
 	public SubcategoryPage clickOnNewButton() {
 		newbutton.click();
 		return this;
 	}
 
 	public SubcategoryPage enterCategoryName() {
-		
+
 		PageUtility pageutility = new PageUtility();
 		pageutility.selectByIndex(updatecategory, 5);
 		return this;
@@ -74,7 +71,7 @@ public class SubcategoryPage {
 	}
 
 	public SubcategoryPage clickOnImageUpload() {
-		
+
 		FileUploadUtility fileuploadutility = new FileUploadUtility();
 		fileuploadutility.fileUploadUsingSendKeys(imageupload, Constants.BEETROOT);// webelement name,
 		return this;
@@ -108,26 +105,25 @@ public class SubcategoryPage {
 	public SubcategoryPage updateSubCategory(String updatetext) {
 		updatesubcategory.clear();
 		updatesubcategory.sendKeys(updatetext);
-		 return this;
+		return this;
 	}
 
 	public SubcategoryPage updateImage() {
 		FileUploadUtility fileuploadutility = new FileUploadUtility();
 		fileuploadutility.fileUploadUsingSendKeys(updateimageuploadfile, Constants.BEETROOT);
-		 return this;
+		return this;
 	}
 
 	public SubcategoryPage updateSave() {
 		// update.click();
-		PageUtility pageutility= new PageUtility();
+		PageUtility pageutility = new PageUtility();
 		pageutility.javaClickMethod(update, driver);
 		return this;
-	
+
 	}
 
 	public boolean isUpdateAlertDisplyed() {
 		return updatealert.isDisplayed();
 	}
 
-	
 }

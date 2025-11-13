@@ -20,36 +20,7 @@
 
 
 
-	<test name="EdgeTest">
-
-		<parameter name="browser" value="edge"></parameter>
-
-
-		<classes>
-			<class name="testscript1.LoginTest1"></class>
-			<class name="testscript1.LogoutTest"></class>
-
-			
-		</classes>
-	</test>
-
-
-
-
-
-	<test name="FirefoxTest">
-
-		<parameter name="browser" value="firefox"></parameter>
-
-
-		<classes>
-
-			<class name="testscript1.LoginTest1"></class>
-			<class name="testscript1.LogoutTest"></class>
-
-			
-		</classes>
-	</test>
+	
 
 
 </suite> 

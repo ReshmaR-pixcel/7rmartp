@@ -14,9 +14,8 @@ import utilities1.FakerUtility;
 public class AdminUserTest extends Base {
 	public LogoutPage logoutpage;
 	public AdminUserPage adminuserpage;
-	@Test(retryAnalyzer = retry.Retry.class,description="verify theat user is able to save user details")
-
 	
+	@Test(retryAnalyzer = retry.Retry.class,description="verify theat user is able to save user details")
 	public void verifyThatUserIsAbleToSaveUserDeatils() throws IOException {
 
 		/**String usernamevalue = "admin";

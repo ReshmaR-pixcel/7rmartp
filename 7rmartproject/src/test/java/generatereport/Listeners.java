@@ -65,7 +65,8 @@ public class Listeners implements ITestListener {
 		ITestListener.super.onStart(context);
 		}
 	public void onFinish(ITestContext context) {
-		ITestListener.super.onFinish(context); extent.flush();
+		ITestListener.super.onFinish(context); 
+		extent.flush();
 		}
 
 }
