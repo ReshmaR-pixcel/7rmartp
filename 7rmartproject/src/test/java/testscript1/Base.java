@@ -66,9 +66,11 @@ public class Base {
 		if (iTestResult.getStatus() == ITestResult.FAILURE) {
 			scrshot = new ScreenshotUtility();
 			scrshot.getScreenShot(driver, iTestResult.getName());
-		
-		driver.quit();
-		}	
+		}
+
+		if (driver != null) {
+			driver.quit();
+		}
 }
 
 }

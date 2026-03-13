@@ -13,7 +13,7 @@ import utilities1.ExcelUtility;
 
 public class LoginTest1 extends Base {
 	
-	@Test(groups = { "regression"} ,retryAnalyzer = retry.Retry.class, description = "verify the user able to login using  valid valid username and password")
+	@Test(groups = { "regression", "smoke"} ,retryAnalyzer = retry.Retry.class, description = "verify the user able to login using valid username and password")
 
 	public void verifyUserIsAbleToLoginUsingValidUsernameAndPassword() throws IOException {
 
